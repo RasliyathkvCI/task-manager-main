@@ -1,8 +1,9 @@
 import { render, screen } from '@testing-library/react';
 import App from './App';
+import { addTask } from './components/Tasklist';
 
-test('renders learn react link', () => {
-  render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+test('renders Tasklist component', () => {
+    render(<App />);
+    const linkElement = screen.getByText(/Tasklist/i);
+    expect(linkElement).toBeInTheDocument();
 });
