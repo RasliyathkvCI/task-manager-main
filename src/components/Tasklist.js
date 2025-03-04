@@ -36,6 +36,25 @@ const Tasklist = () => {
         const data = await response.json();
         setTasks(data);
     }
+    //call the fetchTasks function when the component mounts
+    React.useEffect(() => {
+        fetchTasks();
+    }, []);
+    // Remove a task
+    /**
+     * Removes a task from the task list.
+     * 
+     * This function filters out the task with the specified id and updates the tasks state.
+     * 
+     * @param {number} id - The id of the task to remove.
+     */
+    function removeTask(id) {
+        // Filter out the task with the specified id
+        const updatedTasks = tasks.filter(task => task.id !== id);
+        // Update the tasks state
+        setTasks(updatedTasks);
+    }
+
     return (
         <div style={{ padding: '20px', fontFamily: 'Arial, sans-serif' }}>
            <h1 style={{ color: 'red' }}>Feature Tasklist</h1>
@@ -59,10 +78,17 @@ const Tasklist = () => {
                         style={{ padding: '10px', borderBottom: '1px solid #ccc' }}
                     >
                         {task.title}
+                         {/* want a styled button to remove tasks */}
+            <button 
+                onClick={() => removeTask(task.id)} 
+                style={{ padding: '10px 20px', borderRadius: '4px', border: 'none', backgroundColor: '#dc3545', color: '#fff', cursor: 'pointer' }}
+            >
+                Remove Task
+            </button>
                     </li>
                 ))}
             </ul>
-           
+          
         </div>
     );
 }
